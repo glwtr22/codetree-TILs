@@ -48,20 +48,27 @@ for k in range(4):
         break
     # [2] 회전시키기: '+' 반시계 회전, 부분 사각형 시계 회전
     narr = [[0] * N for _ in range(N)]
+
+    # for i in range(N):
+    #     narr[M][i] = arr[i][M]
+    # for j in range(N):
+    #     narr[j][M] = arr[M][N-1-j]
+    #
+    # for (si, sj) in ((0, 0), (0, M+1), (M+1, 0), (M+1, M+1)):
+    #     for i in range(M):
+    #         for j in range(M):
+    #             narr[si + i][sj + j] = arr[si + M - 1 - j][sj + i]
+
     for i in range(N):
         narr[M][i] = arr[i][M]
     for j in range(N):
-        narr[j][M] = arr[M][N-1-j]
+        narr[N-1-j][M] = arr[M][j]
 
     for (si, sj) in ((0, 0), (0, M+1), (M+1, 0), (M+1, M+1)):
         for i in range(M):
             for j in range(M):
-                narr[si + i][sj + j] = arr[si + M - 1 - j][sj + i]
+                narr[si + N - 1 - j][sj + i] = arr[si + i][sj + j]
 
     arr = narr
 
 print(ans)
-
-'''
-함수화를 하지 말고 그냥 주석으로 단계 나누기?
-'''
